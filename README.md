@@ -19,21 +19,28 @@ This project is a chatbot application leveraging GPT models using **OpenAI** or 
 
 The application is built on a three-tier architecture comprising the following components:
 
-1. **Application Server (Backend)**:
+```mermaid
+graph TD;
+    A[User] -->|Interacts| B[React Frontend];
+    B -->|Requests| C[Flask Backend];
+    C -->|Queries| D[OpenAI API];
+    C -->|Caches| E[Redis];
+    C -->|Stores Data| F[MongoDB];
+    C -->|Searches| G[Google Search API];
+```
 
+1. **Application Server (Backend)**:
    - Built using Flask API (Python)
    - Manages chat sessions and history
    - Integrates with OpenAI’s Completion API
    - Performs internet searches when necessary
 
 2. **Frontend**:
-
    - Developed using React.js
    - Styled with Material UI
    - Communicates with the backend for chat interactions
 
 3. **Storage & Session Management**:
-
    - **Redis**: Stores session-based temporary conversation history for quick retrieval
    - **MongoDB**: Persists chat logs using session IDs for long-term storage
 
