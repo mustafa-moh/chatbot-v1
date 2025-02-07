@@ -1,4 +1,15 @@
 # ChatBot Application using OpenAI Completion API
+## Index
+1. [Description](#description)
+2. [Architecture](#architecture)
+3. [Workflow](#workflow)
+4. [Flowchart](#flowchart)
+5. [Technologies Used](#technologies-used)
+6. [Configuration](#configuration)
+7. [Local Installation Using Docker Compose](#local-installation-using-docker-compose)
+8. [Stopping the Application](#stopping-the-application)
+9. [Deployment](#deployment)
+10. [Enhancements](#enhancements)
 
 ## Description
 
@@ -145,5 +156,12 @@ docker-compose down
 ```
 
 This will shut down all services and remove associated containers.
+
+
+## Deployment
+will add it later
+
+## Enhancements
+will add it later
 
 ---
