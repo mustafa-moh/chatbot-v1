@@ -95,12 +95,12 @@ To set up the project, configure the following environment variables:
 
 ```env
 # OpenAI API
-OPENAI_API_KEY=your_openai_api_key
-AZURE_OPENAI_API_KEY=your_azure_openai_api_key
+AZURE_OPENAI_API_KEY=your_openai_api_key
+AZURE_OPENAI_ENDPOINT=your_azure_openai_endpoint
 
 # Google Search API
 GOOGLE_SEARCH_API_KEY=your_google_api_key
-GOOGLE_SEARCH_ENGINE_ID=your_search_engine_id
+GOOGLE_SEARCH_CX=your_search_engine_id
 ```
 
 Ensure that all dependencies are installed, and services like Redis and MongoDB are running before starting the application.
