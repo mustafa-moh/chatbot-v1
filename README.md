@@ -59,7 +59,7 @@ graph TD;
     H --> I[Pass search results to LLM];
     I --> J{Can LLM extract an answer?};
     J -->|Yes| K[Return extracted answer to user];
-    J -->|No| L[Respond: "I do not have an answer"];
+    J -->|No| L[Respond: I do not have an answer];
 ```
 
 ## Technologies Used
