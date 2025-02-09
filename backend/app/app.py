@@ -33,7 +33,8 @@ def chat():
     data = request.json
     prompt = data.get('prompt')
 
-    # todo: check if prompt is not empty
+    if not prompt or not prompt.strip():
+        return jsonify({"error": "Prompt is required and cannot be empty."}), 422
 
     # Retrieve conversation history from session manager
     conversation_history = get_session_thread()
