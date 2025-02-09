@@ -20,6 +20,8 @@ Completion API to provide intelligent responses to user inputs. If the chatbot c
 performs an internet search using Google Search APIs and retrieves the top five relevant answers to provide a more
 accurate response.
 
+**💡 Hint:** Another approach utilizing the **function_calling** feature using the completion API checkout branch name `feature/function-call`.
+
 ## Architecture
 
 The application is built on a three-tier architecture comprising the following components:
