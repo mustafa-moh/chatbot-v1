@@ -11,9 +11,11 @@ class OpenAIService(AIService):
             azure_endpoint=Config.AZURE_OPENAI_ENDPOINT
         )
 
-    def get_response(self, context) -> str:
+    def get_response(self, context, tools=None, tool_choice=None):
         response = self.client.chat.completions.create(
             model="gpt-4o",
-            messages=context
+            messages=context,
+            tools=tools,
+            tool_choice=tool_choice
         )
-        return response.choices[0].message.content
+        return response.choices[0].message

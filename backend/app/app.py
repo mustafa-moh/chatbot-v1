@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
+
+from app.services.assistant_service import AssistantService
 from app.services.factories.ai_factory import AIFactory
 from app.services.factories.search_factory import SearchFactory
-from app.utils.ai_instructions import assistant_instructions, has_no_answer_token, assistant_prompt
+from app.utils.ai_instructions import assistant_instructions
 from app.utils.session_manager import get_session_id, get_session_thread, get_current_session_id, set_session_thread
 from config import Config
 from datetime import datetime
@@ -14,6 +16,7 @@ CORS(app)
 # Initialize services using factories
 ai_service = AIFactory.create_ai_service("openai")
 search_service = SearchFactory.create_search_service("google")
+assistant_service = AssistantService(ai_service=ai_service, search_service=search_service)
 
 # Initialize MongoDB
 client = MongoClient(Config.MONGO_URI)
@@ -45,18 +48,8 @@ def chat():
         messages = [{"role": "system", "content": assistant_instructions}]
 
     messages.append({"role": "user", "content": prompt})
-    response_txt = ai_service.get_response(context=messages)
 
-    # Add AI response to conversation
-    messages.append({"role": "assistant", "content": response_txt})
-
-    if has_no_answer_token in response_txt.lower():
-        search_results = search_service.search(query=prompt)
-        # Combine search results with OpenAI for a natural response
-        prompt = assistant_prompt(search_results)
-        messages.append({"role": "user", "content": prompt})
-        response_txt = ai_service.get_response(context=messages)
-        messages.append({"role": "assistant", "content": response_txt})
+    response_txt = assistant_service.get_response(context=messages)
 
     # Store conversation in Redis
     set_session_thread(messages)

@@ -21,7 +21,7 @@ class GoogleSearchService(SearchService):
         formatted_results = ""
         if response.status_code == 200:
             results = response.json().get("items", [])
-            formatted_results = "\n".join(
-                f"- {result['snippet']} and here is a link for more details {result['link']}" for result in results[:3])
+            formatted_results = "\n\n".join(
+                f"Title: {result['title']}\nSnippet: {result['snippet']}\nLink: {result['link']}" for result in results)
 
         return formatted_results
