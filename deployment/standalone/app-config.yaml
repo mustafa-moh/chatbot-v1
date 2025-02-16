@@ -6,3 +6,4 @@ metadata:
 data:
   MONGO_URI: mongodb://mongo:27017/ai_assistant
   REDIS_URL: redis://redis:6379/0
+  REDIS_DRIVER: redis
