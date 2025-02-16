@@ -204,9 +204,9 @@ The high availability setup utilize bitnami Helm charts for building a reliable 
 handling the HPA on the frontend and api apps.
 
 1. Navigate to `deployment/high-availability`
-2. Build Frontend: Run `./build-front.sh dev` to build and push the frontend-app image to AWS ECR. You can modify the
-   command to use any container registry of your choice.
-3. Build Backend: Run `./build-backend.sh dev` to build and push the frontend-app image to AWS ECR. You can modify the
+2. Build Frontend: Run `./build-front.sh prod` to build and push the frontend-app image to AWS ECR. You can modify the
+   command to use any container registry of your choice. configure the backend host in this build script before running.
+3. Build Backend: Run `./build-backend.sh prod` to build and push the frontend-app image to AWS ECR. You can modify the
    command to use any container registry of your choice.
 4. Update the placeholder `{app-image-uri}` in `app-deplyment.yaml`, and `frontend-deployment.yaml` with image uri and
    tag created on the prev steps for both apps. here is an example of image uri with tag of the frontend app

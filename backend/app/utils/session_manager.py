@@ -10,11 +10,6 @@ if Config.REDIS_DRIVER == "sentinel":
 else:
     redis_client = redis.from_url(Config.REDIS_URL)
 
-
-def update_session(session_id, data):
-    redis_client.hmset(session_id, data)
-
-
 def get_session_id(request):
     data = request.json
     if not data.get('session_id'):
