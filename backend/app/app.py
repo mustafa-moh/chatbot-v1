@@ -29,7 +29,7 @@ def ensure_session_id():
 
 
 @app.route("/health")
-def chat():
+def health():
     return "Ok"
 
 

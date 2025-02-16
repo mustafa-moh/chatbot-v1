@@ -2,8 +2,13 @@ from config import Config
 from flask import request
 import redis
 import uuid
+from redis.sentinel import Sentinel
 
-redis_client = redis.from_url(Config.REDIS_URL)
+if Config.REDIS_DRIVER == "sentinel":
+    sentinel = Sentinel([(Config.REDIS_SENTINEL_HOST, 26379)], socket_timeout=0.1)
+    redis_client = sentinel.master_for('mymaster', socket_timeout=0.1)
+else:
+    redis_client = redis.from_url(Config.REDIS_URL)
 
 
 def update_session(session_id, data):
@@ -20,6 +25,7 @@ def get_session_id(request):
 def get_session_thread():
     conversation_key = f"thread:{request.session_id}"
     return redis_client.get(conversation_key)
+
 
 def set_session_thread(messages):
     conversation_key = f"thread:{request.session_id}"
