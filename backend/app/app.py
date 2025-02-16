@@ -28,6 +28,11 @@ def ensure_session_id():
         request.session_id = session_id
 
 
+@app.route("/health")
+def chat():
+    return "Ok"
+
+
 @app.route("/api/chat", methods=['POST'])
 def chat():
     data = request.json
